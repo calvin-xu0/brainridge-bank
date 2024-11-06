@@ -11,4 +11,3 @@ import { MatListModule } from '@angular/material/list'
 export class AccountListComponent {
 
 }
-s
