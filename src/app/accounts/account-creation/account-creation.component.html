@@ -9,15 +9,17 @@
     <div>
         <label>Account Type*</label>
         <mat-radio-group required id="accountType" name="accountType" formControlName="accountType">
-            <mat-radio-button *ngFor="let accountType of accountTypes" [value]="accountType">
+            @for (accountType of accountTypes; track accountType) {
+            <mat-radio-button [value]="accountType">
                 {{ accountType }}
             </mat-radio-button>
+            }
         </mat-radio-group>
     </div>
     <div>
         <mat-form-field floatLabel="always">
             <mat-label>Balance</mat-label>
-            <input matInput type="number" placeholder="0" id="balance" name="balance" formControlName="balance">
+            <input matInput type="number" min="0" placeholder="0" id="balance" name="balance" formControlName="balance">
             <span matTextPrefix>$&nbsp;</span>
         </mat-form-field>
     </div>

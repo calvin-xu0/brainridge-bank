@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ACCOUNT_TYPES } from '../shared/account-types';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-account-creation',
@@ -17,9 +17,9 @@ export class AccountCreationComponent {
   submitted = false
 
   accountCreationForm = this.formBuilder.group({
-    name: [''],
-    accountType: [''],
-    balance: [0]
+    name: ['', Validators.required],
+    accountType: ['', Validators.required],
+    balance: [0, [Validators.required, Validators.min(0)]]
   })
 
   onSubmit() {
