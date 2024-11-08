@@ -10,5 +10,5 @@ import { MatListModule } from '@angular/material/list';
   styleUrl: './account-card.component.css'
 })
 export class AccountCardComponent {
-  @Input() account: Account | null = null
+  @Input() account!: Account
 }

@@ -2,7 +2,7 @@
     <h2>Accounts</h2>
     <mat-list>
         @for (account of accounts; track account.name) {
-        <app-account-card (account)="account" />
+        <app-account-card [account]=account />
         }
     </mat-list>
     <a mat-button routerLink="/account-creation">Open Account</a>
