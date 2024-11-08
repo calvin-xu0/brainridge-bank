@@ -6,7 +6,10 @@ import { AccountNameError } from "./account-errors";
   providedIn: 'root'
 })
 export class AccountService {
-  private accounts: Account[] = []
+  private accounts: Account[] = [
+    new Account('ChequingA', 'Chequing', 100),
+    new Account('SavingsB', 'Savings', 10)
+  ]
 
   createAccount(newAccount: Account) {
     if (this.accounts.find(account => account.name === newAccount.name)) {
