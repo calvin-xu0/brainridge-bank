@@ -1,5 +1,13 @@
 <section>
     <h2>Accounts</h2>
-    <mat-list></mat-list>
+    <mat-list>
+        @for (account of accounts; track account.name) {
+        <mat-list-item>
+            <span matListItemTitle>{{account.name}}</span>
+            <span matListItemLine>{{account.accountType}}</span>
+            <span matListItemLine>${{account.balance}}</span>
+        </mat-list-item>
+        }
+    </mat-list>
     <a mat-button routerLink="/account-creation">Open Account</a>
 </section>
