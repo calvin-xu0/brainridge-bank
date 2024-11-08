@@ -1,17 +1,19 @@
 import { Component, inject, signal } from '@angular/core';
 import { ACCOUNT_TYPES } from '../shared/account-types';
-import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
-import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AccountService } from '../shared/account.service';
 import { Account } from '../shared/account.model';
 import { AccountNameError } from '../shared/account-errors';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-account-creation',
   standalone: true,
-  imports: [MatError, MatFormField, MatLabel, MatRadioButton, MatRadioGroup, ReactiveFormsModule],
+  imports: [MatButtonModule, MatInputModule, MatFormFieldModule, MatRadioModule, ReactiveFormsModule, RouterLink],
   templateUrl: './account-creation.component.html',
   styleUrl: './account-creation.component.css'
 })
