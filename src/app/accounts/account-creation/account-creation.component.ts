@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ACCOUNT_TYPES } from '../shared/account-types';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { Account } from '../shared/account.model';
-import { FormsModule } from '@angular/forms';
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-account-creation',
   standalone: true,
-  imports: [FormsModule, MatFormField, MatLabel, MatRadioButton, MatRadioGroup],
+  imports: [FormsModule, MatError, MatFormField, MatLabel, MatRadioButton, MatRadioGroup, ReactiveFormsModule],
   templateUrl: './account-creation.component.html',
   styleUrl: './account-creation.component.css'
 })
 export class AccountCreationComponent {
+  private formBuilder = inject(FormBuilder)
   accountTypes = ACCOUNT_TYPES
-  model = new Account(0, 'Test name', 'Chequing', 0)
   submitted = false
+
+  accountCreationForm = this.formBuilder.group({
+    name: [''],
+    accountType: [''],
+    balance: [0]
+  })
 
   onSubmit() {
     this.submitted = true

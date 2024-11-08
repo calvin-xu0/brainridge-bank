@@ -1,16 +1,25 @@
-<form #accountCreationForm="ngForm">
+<form [formGroup]="accountCreationForm" (ngSubmit)="onSubmit()">
+    <h3>Open an Account</h3>
     <div>
         <mat-form-field>
             <mat-label>Account Name</mat-label>
-            <input matInput type="text" id="name" required [(ngModel)]="model.name">
+            <input matInput type="text" id="name" required formControlName="name">
         </mat-form-field>
     </div>
     <div>
         <label>Account Type*</label>
-        <mat-radio-group required id="skill" [(ngModel)]="model.accountType" name="accountType">
+        <mat-radio-group required id="accountType" name="accountType" formControlName="accountType">
             <mat-radio-button *ngFor="let accountType of accountTypes" [value]="accountType">
                 {{ accountType }}
             </mat-radio-button>
         </mat-radio-group>
     </div>
+    <div>
+        <mat-form-field floatLabel="always">
+            <mat-label>Balance</mat-label>
+            <input matInput type="number" placeholder="0" id="balance" name="balance" formControlName="balance">
+            <span matTextPrefix>$&nbsp;</span>
+        </mat-form-field>
+    </div>
+    <button mat-button (click)="accountCreationForm.reset()" [disabled]="!accountCreationForm.valid">Open</button>
 </form>
