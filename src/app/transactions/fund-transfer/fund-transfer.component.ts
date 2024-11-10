@@ -19,13 +19,15 @@ export class FundTransferComponent {
   accounts = this.accountService.getAccounts()
 
   leftSelectedName!: string
-  leftAccount!: Account
+  leftAccount!: Account | undefined
   rightSelectedName!: string
+  rightAccount!: Account | undefined
 
-  changeLeft() {
-    const data = this.accountService.getAccountByName(this.leftSelectedName)
-    if (data !== undefined) {
-      this.leftAccount = data
+  changeAccount(side: string) {
+    if (side === 'left') {
+      this.leftAccount = this.accountService.getAccountByName(this.leftSelectedName)
+    } else if (side === 'right') {
+      this.rightAccount = this.accountService.getAccountByName(this.rightSelectedName)
     }
   }
 }
