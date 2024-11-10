@@ -1,0 +1,16 @@
+<section>
+    <h2>Transfer Funds</h2>
+    <div>
+        <div>
+            <mat-label>Account</mat-label>
+            <mat-select [(value)]="leftSelectedName" (valueChange)="changeLeft()">
+                @for (account of accounts; track account.name) {
+                <mat-option [value]=account.name> {{account.name }} -- {{account.balance}} </mat-option>
+                }
+            </mat-select>
+        </div>
+        @if (leftAccount) {
+        <app-account-card [account]="leftAccount" />
+        }
+    </div>
+</section>

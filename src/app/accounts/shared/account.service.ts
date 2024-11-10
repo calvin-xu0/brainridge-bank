@@ -22,4 +22,8 @@ export class AccountService {
   getAccounts() {
     return this.accounts
   }
+
+  getAccountByName(accountName: string) {
+    return this.accounts.find(account => account.name === accountName)
+  }
 }
