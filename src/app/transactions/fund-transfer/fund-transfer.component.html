@@ -2,14 +2,15 @@
     <h2>Transfer Funds</h2>
     <div>
         <div>
-            <div>
+            <mat-form-field>
                 <mat-label>Account</mat-label>
                 <mat-select [(value)]="leftSelectedName" (valueChange)="changeAccount('left')">
                     @for (account of accounts; track account.name) {
-                    <mat-option [value]=account.name> {{account.name }} -- {{account.balance | currency}} </mat-option>
+                    <mat-option [value]=account.name [disabled]="account.name === rightSelectedName"> {{account.name }}
+                        -- {{account.balance | currency}} </mat-option>
                     }
                 </mat-select>
-            </div>
+            </mat-form-field>
             @if (leftAccount) {
             <mat-list>
                 <app-account-card [account]="leftAccount" />
@@ -17,14 +18,29 @@
             }
         </div>
         <div>
-            <div>
+            <form [formGroup]="fundTransferForm" (ngSubmit)="onSubmit">
+                <div>
+                    <mat-form-field floatLabel="always">
+                        <mat-label>Transfer Amount</mat-label>
+                        <input class="right-align" matInput type="number" min="0" placeholder="0.00"
+                            step="0.01 required" formControlName="amount" />
+                        <span matTextPrefix>$&nbsp;</span>
+                    </mat-form-field>
+                </div>
+                <button mat-button [disabled]="!fundTransferForm.valid" (click)="onSubmit('rightToLeft')">←</button>
+                <button mat-button [disabled]="!fundTransferForm.valid" (click)="onSubmit('leftToRight')">→</button>
+            </form>
+        </div>
+        <div>
+            <mat-form-field>
                 <mat-label>Account</mat-label>
                 <mat-select [(value)]="rightSelectedName" (valueChange)="changeAccount('right')">
                     @for (account of accounts; track account.name) {
-                    <mat-option [value]=account.name> {{account.name }} -- {{account.balance | currency}} </mat-option>
+                    <mat-option [value]=account.name [disabled]="account.name === leftSelectedName"> {{account.name }}
+                        -- {{account.balance | currency}} </mat-option>
                     }
                 </mat-select>
-            </div>
+            </mat-form-field>
             @if (rightAccount) {
             <mat-list>
                 <app-account-card [account]="rightAccount" />
