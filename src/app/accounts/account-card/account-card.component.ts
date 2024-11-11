@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { Account } from '../shared/account.model';
 import { MatListModule } from '@angular/material/list';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-account-card',
   standalone: true,
-  imports: [CurrencyPipe, MatListModule],
+  imports: [CurrencyPipe, MatListModule, NgClass],
   templateUrl: './account-card.component.html',
-  styleUrl: './account-card.component.css'
+  styleUrls: ['./account-card.component.css', '../../app.component.css']
 })
 export class AccountCardComponent {
   @Input() account!: Account

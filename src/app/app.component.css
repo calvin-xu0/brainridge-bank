@@ -4,12 +4,18 @@
     margin-right: auto;
 }
 
-button.chequing {
+.chequing {
     color: darkblue;
+}
+
+button.chequing {
     outline: 1px solid darkblue;
 }
 
-button.savings {
+.savings {
     color: darkgreen;
+}
+
+button.savings {
     outline: 1px solid darkgreen;
 }

@@ -1,5 +1,5 @@
 <mat-list-item>
     <span matListItemTitle>{{account.name}}</span>
-    <span matListItemLine>{{account.accountType}}</span>
+    <span matListItemLine [ngClass]="account.accountType.toLowerCase()">{{account.accountType}}</span>
     <span matListItemLine>{{account.balance | currency}}</span>
 </mat-list-item>
