@@ -34,7 +34,7 @@ export class TransactionService {
             date: t.date,
             otherAccountName: t.toAccountName,
             newBalance: t.fromAccountNewBalance,
-            transactionAmount: t.transactionAmount
+            transactionAmount: -t.transactionAmount
           }
         )
       } else if (accountName === t.toAccountName) {

@@ -3,7 +3,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { AccountService } from '../../accounts/shared/account.service';
 import { Account } from '../../accounts/shared/account.model';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
 import { TransactionService } from '../shared/transaction.service';
 import { MatTableModule } from '@angular/material/table';
 import { TransactionLog } from '../shared/transaction.model';
@@ -11,7 +11,7 @@ import { TransactionLog } from '../shared/transaction.model';
 @Component({
   selector: 'app-transaction-history',
   standalone: true,
-  imports: [CurrencyPipe, DatePipe, MatFormFieldModule, MatSelectModule, MatTableModule],
+  imports: [CurrencyPipe, DatePipe, MatFormFieldModule, MatSelectModule, MatTableModule, NgClass],
   templateUrl: './transaction-history.component.html',
   styleUrl: './transaction-history.component.css'
 })
