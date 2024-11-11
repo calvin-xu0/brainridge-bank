@@ -8,3 +8,12 @@ export class Transaction {
     public transactionAmount: number
   ) { }
 }
+
+export class TransactionLog {
+  constructor(
+    public date: Date,
+    public otherAccountName: string,
+    public newBalance: number,
+    public transactionAmount: number
+  ) { }
+}

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { AccountCreationComponent } from './accounts/account-creation/account-creation.component';
 import { FundTransferComponent } from './transactions/fund-transfer/fund-transfer.component';
-import { TransactionHistoryComponent } from './accounts/transaction-history/transaction-history.component';
+import { TransactionHistoryComponent } from './transactions/transaction-history/transaction-history.component';
 import { AccountListComponent } from './accounts/account-list/account-list.component';
 
 export const routes: Routes = [
