@@ -9,13 +9,14 @@ import { AccountNameError } from '../shared/account-errors';
 import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-account-creation',
   standalone: true,
-  imports: [MatButtonModule, MatInputModule, MatFormFieldModule, MatRadioModule, ReactiveFormsModule, RouterLink],
+  imports: [MatButtonModule, MatInputModule, MatFormFieldModule, MatRadioModule, NgClass, ReactiveFormsModule, RouterLink],
   templateUrl: './account-creation.component.html',
-  styleUrl: './account-creation.component.css'
+  styleUrls: ['./account-creation.component.css', '../../app.component.css']
 })
 export class AccountCreationComponent {
   private router = inject(Router)
@@ -39,9 +40,19 @@ export class AccountCreationComponent {
       this.router.navigate(['/accounts'])
     } catch (e) {
       if (e instanceof AccountNameError) {
-        this.nameError.set(e.message)
-        console.log(e.message)
+        this.accountCreationForm.get('name')?.setErrors({ accountNameError: 'Name already in use' })
+        this.updateErrorMessage()
       }
+    }
+  }
+
+  updateErrorMessage() {
+    if (this.accountCreationForm.get('name')?.hasError('accountNameError')) {
+      this.nameError.set('Name already in use');
+    } else if (this.accountCreationForm.get('name')?.hasError('required')) {
+      this.nameError.set('You must enter a value');
+    } else {
+      this.nameError.set('');
     }
   }
 }

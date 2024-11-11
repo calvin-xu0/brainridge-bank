@@ -1,0 +1,9 @@
+button.chequing {
+    color: darkblue;
+    outline: 1px solid darkblue;
+}
+
+button.savings {
+    color: darkgreen;
+    outline: 1px solid darkgreen;
+}

@@ -3,7 +3,10 @@
     <div>
         <mat-form-field>
             <mat-label>Account Name</mat-label>
-            <input matInput type="text" required formControlName="name" />
+            <input matInput type="text" required formControlName="name" (blur)="updateErrorMessage()" />
+            @if (nameError()) {
+            <mat-error>{{nameError()}}</mat-error>
+            }
         </mat-form-field>
     </div>
     <div>
@@ -24,6 +27,7 @@
             <span matTextPrefix>$&nbsp;</span>
         </mat-form-field>
     </div>
-    <button mat-button [disabled]="!accountCreationForm.valid">Open</button>
+    <button [ngClass]="accountCreationForm.valid ? accountCreationForm.get('accountType')?.value?.toLowerCase() : ''"
+        mat-button [disabled]="!accountCreationForm.valid">Open</button>
     <a mat-button routerLink="/accounts">Cancel</a>
 </form>
