@@ -40,7 +40,7 @@ export class AccountCreationComponent {
       this.router.navigate(['/accounts'])
     } catch (e) {
       if (e instanceof AccountNameError) {
-        this.accountCreationForm.get('name')?.setErrors({ accountNameError: 'Name already in use' })
+        this.accountCreationForm.get('name')?.setErrors({ accountNameError: e.message })
         this.updateErrorMessage()
       }
     }
@@ -48,7 +48,7 @@ export class AccountCreationComponent {
 
   updateErrorMessage() {
     if (this.accountCreationForm.get('name')?.hasError('accountNameError')) {
-      this.nameError.set('Name already in use');
+      this.nameError.set(this.accountCreationForm.get('name')?.getError('accountNameError'));
     } else if (this.accountCreationForm.get('name')?.hasError('required')) {
       this.nameError.set('You must enter a value');
     } else {
