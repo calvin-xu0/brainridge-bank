@@ -27,8 +27,10 @@
                         <span matTextPrefix>$&nbsp;</span>
                     </mat-form-field>
                 </div>
-                <button mat-button [disabled]="!fundTransferForm.valid" (click)="onSubmit('rightToLeft')">←</button>
-                <button mat-button [disabled]="!fundTransferForm.valid" (click)="onSubmit('leftToRight')">→</button>
+                <button mat-button [disabled]="!fundTransferForm.valid || !(leftSelectedName && rightSelectedName)"
+                    (click)=" onSubmit('rightToLeft')">←</button>
+                <button mat-button [disabled]="!fundTransferForm.valid || !(leftSelectedName && rightSelectedName)"
+                    (click)=" onSubmit('leftToRight')">→</button>
             </form>
         </div>
         <div>
