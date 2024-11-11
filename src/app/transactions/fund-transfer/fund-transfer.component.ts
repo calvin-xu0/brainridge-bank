@@ -10,13 +10,14 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { transactionBalanceValidator } from '../shared/transaction-validators';
 import { TransactionService } from '../shared/transaction.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-fund-transfer',
   standalone: true,
-  imports: [AccountCardComponent, CurrencyPipe, MatFormFieldModule, MatInputModule, MatListModule, MatSelectModule, NgIf, ReactiveFormsModule],
+  imports: [AccountCardComponent, CurrencyPipe, MatButtonModule, MatFormFieldModule, MatInputModule, MatListModule, MatSelectModule, NgIf, ReactiveFormsModule],
   templateUrl: './fund-transfer.component.html',
-  styleUrl: './fund-transfer.component.css'
+  styleUrls: ['./fund-transfer.component.css', '../../app.component.css']
 })
 export class FundTransferComponent {
   private accountService = inject(AccountService)

@@ -19,3 +19,7 @@ button.chequing {
 button.savings {
     outline: 1px solid darkgreen;
 }
+
+input.right-align {
+    text-align: right;
+}

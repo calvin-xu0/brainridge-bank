@@ -1,6 +1,6 @@
 <section>
     <h2>Transfer Funds</h2>
-    <div>
+    <div class="transfer-funds-container">
         <div>
             <mat-form-field>
                 <mat-label>Account</mat-label>
@@ -27,21 +27,25 @@
                         <span matTextPrefix>$&nbsp;</span>
                     </mat-form-field>
                 </div>
-                <mat-error *ngIf="(amount.dirty || amount.touched)">
-                    <span *ngIf="amount.hasError('min')">
-                        Enter an amount to transfer
-                    </span>
-                    <span
-                        *ngIf="fundTransferForm.hasError('insufficientBalanceLeft') && fundTransferForm.hasError('insufficientBalanceRight')">
-                        Insufficient balance in accounts
-                    </span>
-                </mat-error>
-                <button mat-button
-                    [disabled]="amount.hasError('min') || fundTransferForm.hasError('insufficientBalanceRight') || !(leftSelectedName && rightSelectedName)"
-                    (click)="onSubmit('rightToLeft')">←</button>
-                <button mat-button
-                    [disabled]="amount.hasError('min') || fundTransferForm.hasError('insufficientBalanceLeft') || !(leftSelectedName && rightSelectedName)"
-                    (click)="onSubmit('leftToRight')">→</button>
+                <div>
+                    <mat-error *ngIf="(amount?.dirty || amount?.touched)">
+                        <span *ngIf="amount?.hasError('min')">
+                            Enter an amount to transfer
+                        </span>
+                        <span
+                            *ngIf="fundTransferForm.hasError('insufficientBalanceLeft') && fundTransferForm.hasError('insufficientBalanceRight')">
+                            Insufficient balance in accounts
+                        </span>
+                    </mat-error>
+                </div>
+                <div class="button-container">
+                    <button mat-flat-button
+                        [disabled]="amount?.hasError('min') || fundTransferForm.hasError('insufficientBalanceRight') || !(leftSelectedName && rightSelectedName)"
+                        (click)="onSubmit('rightToLeft')">←</button>
+                    <button mat-flat-button
+                        [disabled]="amount?.hasError('min') || fundTransferForm.hasError('insufficientBalanceLeft') || !(leftSelectedName && rightSelectedName)"
+                        (click)="onSubmit('leftToRight')">→</button>
+                </div>
             </form>
         </div>
         <div>

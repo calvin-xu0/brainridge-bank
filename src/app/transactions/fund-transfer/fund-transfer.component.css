@@ -1,0 +1,12 @@
+.transfer-funds-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-items: center;
+    justify-content: space-evenly;
+}
