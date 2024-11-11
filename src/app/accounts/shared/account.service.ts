@@ -26,4 +26,10 @@ export class AccountService {
   getAccountByName(accountName: string) {
     return this.accounts.find(account => account.name === accountName)
   }
+
+  updateAccountBalance(account: Account, change: number) {
+    const index = this.accounts.findIndex(a => a.name === account.name)
+    this.accounts[index] = { ...account, balance: account.balance + change }
+    return this.accounts[index]
+  }
 }

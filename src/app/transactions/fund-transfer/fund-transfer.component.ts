@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AccountService } from '../../accounts/shared/account.service';
 import { Account } from '../../accounts/shared/account.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,9 +6,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { AccountCardComponent } from '../../accounts/account-card/account-card.component';
 import { MatListModule } from '@angular/material/list';
 import { CurrencyPipe, NgIf } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { transactionBalanceValidator } from '../shared/transaction-validators';
+import { TransactionService } from '../shared/transaction.service';
 
 @Component({
   selector: 'app-fund-transfer',
@@ -19,6 +20,7 @@ import { transactionBalanceValidator } from '../shared/transaction-validators';
 })
 export class FundTransferComponent {
   private accountService = inject(AccountService)
+  private transactionService = inject(TransactionService)
   private formBuilder = inject(FormBuilder)
   accounts = this.accountService.getAccounts()
 
@@ -41,7 +43,15 @@ export class FundTransferComponent {
   }
 
   onSubmit(transferDirection: string) {
-    // console.log(this.fundTransferForm.get('amount')?.value)
+    if (transferDirection === 'rightToLeft') {
+      this.transactionService.createTransaction(this.rightAccount as Account, this.leftAccount as Account, this.fundTransferForm.get('amount')?.value as number)
+    } else if (transferDirection === 'leftToRight') {
+      this.transactionService.createTransaction(this.leftAccount as Account, this.rightAccount as Account, this.fundTransferForm.get('amount')?.value as number)
+    }
+    this.changeAccount('left')
+    this.changeAccount('right')
+    this.updateValidators()
+    this.accounts = this.accountService.getAccounts()
   }
 
   changeAccount(side: string) {
@@ -52,7 +62,7 @@ export class FundTransferComponent {
     }
   }
 
-  updateAmount() {
+  updateValidators() {
     this.fundTransferForm.setValidators([
       transactionBalanceValidator(this.leftAccount, this.rightAccount)
     ])

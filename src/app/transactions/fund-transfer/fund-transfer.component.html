@@ -23,7 +23,7 @@
                     <mat-form-field floatLabel="always">
                         <mat-label>Transfer Amount</mat-label>
                         <input class="right-align" matInput type="number" min="0" placeholder="0.00"
-                            step="0.01 required" formControlName="amount" (change)="updateAmount()">
+                            step="0.01 required" formControlName="amount" (change)="updateValidators()">
                         <span matTextPrefix>$&nbsp;</span>
                     </mat-form-field>
                 </div>
@@ -37,10 +37,10 @@
                     </span>
                 </mat-error>
                 <button mat-button
-                    [disabled]="amount.hasError('min') || fundTransferForm.hasError('insufficientBalanceLeft') || !(leftSelectedName && rightSelectedName)"
+                    [disabled]="amount.hasError('min') || fundTransferForm.hasError('insufficientBalanceRight') || !(leftSelectedName && rightSelectedName)"
                     (click)="onSubmit('rightToLeft')">←</button>
                 <button mat-button
-                    [disabled]="amount.hasError('min') || fundTransferForm.hasError('insufficientBalanceRight') || !(leftSelectedName && rightSelectedName)"
+                    [disabled]="amount.hasError('min') || fundTransferForm.hasError('insufficientBalanceLeft') || !(leftSelectedName && rightSelectedName)"
                     (click)="onSubmit('leftToRight')">→</button>
             </form>
         </div>
